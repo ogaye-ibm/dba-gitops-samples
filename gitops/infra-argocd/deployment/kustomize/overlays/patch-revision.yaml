@@ -1,0 +1,12 @@
+apiVersion: serving.knative.dev/v1
+kind: Service
+metadata:
+  name: webhook
+spec:
+  template:
+    metadata:
+      name: webhook-jvm-003
+  traffic:
+    - tag: jvm-004
+      revisionName: webhook-jvm-003
+      percent: 100

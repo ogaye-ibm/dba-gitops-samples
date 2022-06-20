@@ -1,0 +1,43 @@
+apiVersion: serving.knative.dev/v1
+kind: Service
+metadata:
+  name: webhook
+spec:
+  template:
+    metadata:
+      name: webhook-jvm
+      annotations:
+        autoscaling.knative.dev/target: "10"
+        autoscaling.knative.dev/minScale: "0"
+        autoscaling.knative.dev/maxScale: "5"
+    spec:
+      containers:
+        #- image: image-registry.openshift-image-registry.svc:5000/default/webhook-jvm:latest
+        - image: quay.io/omar.gaye-ibm/webhook-jvm:latest
+          name: webhook-jvm-container
+          ports:
+            - containerPort: 8080
+          livenessProbe:
+            httpGet:
+              path: /receiver/live
+          readinessProbe:
+            httpGet:
+              path: /receiver/ready
+          env:
+            - name: BUILD
+              value: 'jvm'
+          volumeMounts:
+          - name: trusted-ca
+            mountPath: /etc/pki/ca-trust/extracted/pem
+            readOnly: true
+      volumes:
+        - name: trusted-ca
+          configMap:
+            name: user-ca-bundle
+            items:
+              - key: ca-bundle.crt
+                path: tls-ca-bundle.pem
+  traffic:
+    - tag: jvm
+      revisionName: webhook-jvm
+      percent: 100

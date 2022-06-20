@@ -1,0 +1,7 @@
+.idea
+.DS_Store
+resources/git-src-creds-secret.yaml
+resources/docker-creds-secret.yaml
+resources/redhat-pull-secret.yaml
+resources/git-argocd-creds-secret.yaml
+resources/redhat-pull-secret.yaml

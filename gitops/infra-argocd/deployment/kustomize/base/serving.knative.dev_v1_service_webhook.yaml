@@ -1,0 +1,31 @@
+apiVersion: serving.knative.dev/v1
+kind: Service
+metadata:
+  name: webhook
+spec:
+  template:
+    metadata:
+      annotations:
+        autoscaling.knative.dev/maxScale: "5"
+        autoscaling.knative.dev/minScale: "0"
+        autoscaling.knative.dev/target: "10"
+      name: webhook-jvm-004
+    spec:
+      containers:
+      - env:
+        - name: BUILD
+          value: jvm
+        image: quay.io/omar.gaye-ibm/webhook-jvm:0.0.4
+        livenessProbe:
+          httpGet:
+            path: /receiver/live
+        name: webhook-jvm-container
+        ports:
+        - containerPort: 8080
+        readinessProbe:
+          httpGet:
+            path: /receiver/ready
+  traffic:
+  - percent: 100
+    revisionName: webhook-jvm-004
+    tag: jvm-004

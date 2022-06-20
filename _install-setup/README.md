@@ -12,7 +12,7 @@ This section provides runtimes, middlewares installation and basic setup for a Q
   - [Openshift Operator install](#Openshift-Operator-install)
 - [RHPAM Kogito](#RHPAM-Kogito)
 - [RH OpenShift Serverless -- Knative](#RH-OpenShift-Serverless-Knative)
-- [RH OpenShift Pipelines -- Tekton)](#RH-OpenShift-Pipelines-Tekton)
+- [RH OpenShift Pipelines -- Tekton](#RH-OpenShift-Pipelines-Tekton)
 - [RH OpenShift GitOps -- ArgoCD](#RH-OpenShift-GitOps-ArgoCD)
 - [Flux CD](#Flux-CD)
 - [More, Guides, and References](#More-Guides-and-References)

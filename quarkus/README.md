@@ -25,7 +25,7 @@ brew install quarkus
 sudo xattr -r -d com.apple.quarantine path/to/graalvm/folder/
 ```
 - Install Native Image
-  - Once GrallVM is installed, Native Image can be added to GraalVM with the GraalVM Updater tool. Run this command to install Native Image:
+  - Once GraalVM is installed, Native Image can be added to GraalVM with the GraalVM Updater tool *gu* (under *$JAVA_HOME/bin* or *$GRAALVM_HOME/bin*). Run this command to install Native Image:
 ```shell
 gu install native-image
 ```

@@ -30,6 +30,13 @@ Very straightforward, steps summary
 2. Add products(*) to the *installs* directory, see installs/README for details and links.
 3. Run 'init.sh' or 'init.bat' file. 'init.bat' must be run with Administrative privileges.
 
+**Done!** To run it:
+  - Start server: 
+    - ./target/jboss-eap-7.4/bin/standalone.sh
+  - Login in: 
+    - http://localhost:8080/business-central
+    - user: pamAdmin / password: redhatdm1!
+
 (*) **Notes:** the products to download and copy/move to the *installs* directory are (edit version when needed):
 * Red Hat Enterprise Application Platform archive (jboss-eap-7.3.0.zip) at https://developers.redhat.com/products/eap/download
 * Red Hat Process Automation Manager deployable (rhpam-7.11.0-business-central-eap7-deployable.zip) at https://developers.redhat.com/products/rhpam/download

@@ -6,7 +6,7 @@ Quote (https://quarkus.io): Quarkus is a Kubernetes Native Java stack tailored f
 
 ### Getting started
 - Quarkus Install and getting started: [https://quarkus.io/get-started/](https://quarkus.io/get-started/)
-- Getting started, maven, gradle, quarkus CLIs: [https://quarkus.io/guides/getting-started](https://quarkus.io/guides/getting-started)
+- Getting started, create app with maven, gradle, quarkus CLIs: [https://quarkus.io/guides/getting-started](https://quarkus.io/guides/getting-started)
 
 ### Native images
 

@@ -29,7 +29,7 @@ sudo xattr -r -d com.apple.quarantine path/to/graalvm/folder/
 ```shell
 gu install native-image
 ```
-  - After this additional step, the native-image executable will become available in the $JAVA_HOME/bin directory.
+  - After this additional step, the native-image executable will become available in the *$JAVA_HOME/bin* directory.
 - Build native image with Quarkus
   - https://quarkus.io/guides/building-native-image
 - GraalVM

@@ -22,7 +22,7 @@ The Kie Community is a home for leading Open Source projects that play a role in
 
 ### Difference between the Kogito Community projects and the Red Hat enterprise solutions: [PDF download](https://www.redhat.com/en/resources/whats-the-difference-overview)
 
-** Projects Homes:**
+**Projects Homes**
 - Kie: 
   - https://www.kie.org/
 - Drools: 

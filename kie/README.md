@@ -23,8 +23,9 @@ The Kie Community is a home for leading Open Source projects that play a role in
 ### Difference between the Kogito Community projects and the Red Hat enterprise solutions: [PDF download](https://www.redhat.com/en/resources/whats-the-difference-overview)
 
 **Projects Homes**
--  CNCF Serverless Workflow Ecosystem:
-  - https://github.com/serverlessworkflow 
+- CNCF Serverless Workflow Ecosystem:
+ - https://github.com/serverlessworkflow 
+ - https://serverlessworkflow.github.io/
 - Kie: 
   - https://www.kie.org/
 - Drools: 
@@ -41,4 +42,4 @@ The Kie Community is a home for leading Open Source projects that play a role in
 2. Kie group samples: https://github.com/kiegroup/kogito-examples
 3. Kie samples: https://github.com/tkobayas/kiegroup-examples
 4. Other Kie Learning: https://github.com/KIE-Learning
-5. 
+5. CNCF Serverless Workflow Specs: https://github.com/serverlessworkflow/specification

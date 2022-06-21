@@ -26,6 +26,6 @@ sudo xattr -r -d com.apple.quarantine path/to/graalvm/folder/
 - GraalVM
 - https://www.graalvm.org/
   
-**More Quarkus References ans samples:**
+**More Quarkus References and samples:**
 1. https://github.com/quarkusio
 2. https://github.com/quarkusio/quarkus-quickstarts

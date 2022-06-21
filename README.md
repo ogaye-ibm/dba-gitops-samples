@@ -2,7 +2,7 @@
 
 Digital Business Automation, serverless cloud-native business automation and gitOps **getting started guides, templates, and samples**
 
-###                         *WORK IN PROGRESS...*
+### *WORK IN PROGRESS...*
 
 ## Table of contents
 

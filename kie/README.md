@@ -35,5 +35,6 @@ The Kie Community is a home for leading Open Source projects that play a role in
   - https://docs.jboss.org/kogito/release/latest/html_single/
 
 **Other References:**
-1. https://github.com/kiegroup/kogito-examples
-2. https://github.com/tkobayas/kiegroup-examples
+1. Subscribe, Kie message, bulletin board: https://kie.zulipchat.com
+2. Kie group samples: https://github.com/kiegroup/kogito-examples
+3. Kie samples: https://github.com/tkobayas/kiegroup-examples

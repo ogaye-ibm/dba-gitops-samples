@@ -40,3 +40,5 @@ The Kie Community is a home for leading Open Source projects that play a role in
 1. Subscribe, Kie Group, chat, message, and bulletin board: https://kie.zulipchat.com
 2. Kie group samples: https://github.com/kiegroup/kogito-examples
 3. Kie samples: https://github.com/tkobayas/kiegroup-examples
+4. Other Kie Learning: https://github.com/KIE-Learning
+5. 

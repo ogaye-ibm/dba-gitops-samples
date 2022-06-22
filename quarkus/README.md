@@ -1,8 +1,17 @@
 # DBA Serverless and GitOps Samples
+## Quarkus
 
-### Quarkus, Getting Started
 
-Quote (https://quarkus.io): Quarkus is a Kubernetes Native Java stack tailored for OpenJDK HotSpot and GraalVM, crafted from the best of breed Java libraries and standards
+### Quarkus at a glance
+- Quote from [https://quarkus.io](https://quarkus.io): Quarkus is a Kubernetes Native Java stack tailored for OpenJDK HotSpot and GraalVM, crafted from the best of breed Java libraries and standards: **Supersonic, Subatomic Java**
+- Some capabilities
+  - Container first: Quarkus tailors your application for GraalVM and HotSpot which results in applications with faster boot time and smaller footprint
+  - Imperative and Reactive programing models
+  - Optimized development platform: live reload,native executable, unified configuration,...
+  - Kube-native: the combination of Quarkus and Kubernetes provides an ideal environment for creating scalable, fast, and lightweight applications. Quarkus significantly increases developer productivity with tooling, pre-built integrations, application services, and more.
+  - More: see the guide [https://quarkus.io/guides/](https://quarkus.io/guides/)
+
+### Getting started with Quarkus
 
 - Quarkus Install and getting started: [https://quarkus.io/get-started/](https://quarkus.io/get-started/)
 - On Mac, Homebrew can be used to install Quarkus CLI:

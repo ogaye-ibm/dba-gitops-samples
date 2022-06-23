@@ -2,12 +2,14 @@
 ## Serverless Content Event Webhook Receiver Quarkus Project
 ### Deploying to OpenShift
 
+This section allows you to test knative, revision, splitting traffic, etc..
+
 #### Before you apply the manifests:
 - Make sure you have the right images (jvm image and/or native image) either in your OpenShift project local registry or from your favorite registry (I use quay.io)
   - The pipelines sample in the [gitops](../../../gitops) section can build and deploy to OpenShift local registry or to any external registry
 - Edit accordingly the container section in the two knative serving manifest files described below
 
-#### Manifest files used for a quick OpenShit test/deploy
+#### Manifest files used for a quick OpenShift test/deploy
 - ./openshift/01_webhook-kn-serving-jvm.yaml
   - used to deploy the jvm build version of the app
   - update the container section to point to your image
@@ -21,11 +23,17 @@
   - OpenShift secret, environment variables related to CS Event (HMAC and webhook registration ID), edit and update 
 
 #### Deploy
+Configure
+```shell
+oc apply cs-server-configmap.yaml
+oc apply webhook-event-secret.yaml
+```
+Deploy jvm image (app version/revision 1)
 ```shell
 oc apply ./openshift/01_webhook-kn-serving-jvm.yaml
 ```
-Test and then deploy the second version/revision
+Test and then deploy the second version/revision, the native image
 ```shell
 oc apply ./openshift/01_webhook-kn-serving-native.yaml
 ```
-You should have 2 versions of the app running with traffic splitted equally (50% each)
+You should have 2 versions of the app running with traffic splitted equally (50% each). 

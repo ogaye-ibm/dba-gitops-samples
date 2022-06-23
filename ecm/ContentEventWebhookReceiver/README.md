@@ -43,13 +43,13 @@ You can create a native executable using:
 ./gradlew build -Dquarkus.package.type=native
 ```
 
-Or, if you don't have GraalVM installed (see here [how to](../../quarkus)), you can run the native executable build in a container using: 
+Or, if you don't have GraalVM installed (see here for [how to](../../quarkus)), you can run the native executable build in a container using: 
 ```shell script
 ./gradlew build -Dquarkus.package.type=native -Dquarkus.native.container-build=true
 ```
-Note: when building native image with the container-build=true option, you might encounter Docker and 
-resource issues. If so, go to your Docker Preference and increase the Memory setting from the default 2GB. For 
-example, I build Native Image with Memory set to 8GB then using the following command
+**Note**: when building native image with the *quarkus.native.container-build=true* option, you might encounter Docker and 
+resources issues. If so, go to your Docker Preferences and increase the Memory setting from the default 2GB. For 
+example, I build Native Image with Memory set to 8GB and using the following command
 ```shell
 ./gradlew build -Dquarkus.package.type=native -Dquarkus.native.container-build=true -Dquarkus.native.native-image-xmx=8G
 ```

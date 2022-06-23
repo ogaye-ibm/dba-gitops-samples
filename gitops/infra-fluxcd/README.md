@@ -1,2 +1,3 @@
-# dba-gitops-samples
-  Digital Business Automation - Gitops, CICD samples 
+# DBA Serverless and GitOps Samples
+## GitOps Samples
+### Flux Samples

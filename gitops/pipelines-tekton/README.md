@@ -1,6 +1,40 @@
+# DBA Serverless and GitOps Samples
+## GitOps Samples - Tekton Pipeline Samples
 
 
-```yaml
+## Table of Contents
+[Use cases](#use-cases)
+[Tekton for CI/CD](#tekton-for-cicd)
+[Tekton for CI with Argo for CD](#tekton-for-ci-with-argo-for-cd)
+[Samples inventory](#samples-inventory)
+[Resources](#resources)
+[Triggers](#triggers)
+[Tasks](#tasks)
+[Pipelines](#pipelines)
+[Running the pipelines](#running-the-pipelines)
+[References and Guide](#references-and-guide)
+
+
+## Use cases
+### Tekton for CI/CD
+### Tekton for CI with Argo for CD
+
+## Samples inventory
+Each subsection has a specific README for details
+- **Resources**
+- **Triggers**
+- **Tasks**
+- **Pipelines**
+
+### Resources
+### Triggers
+### Tasks
+### Pipelines
+### Running the pipelines
+### References and Guide
+
+
+```shell
 kubectl apply -f https://raw.githubusercontent.com/tektoncd/catalog/main/task/kaniko/0.5/kaniko.yaml
 
 oc apply -f resources/workspace-pvc.yaml

@@ -35,6 +35,6 @@ oc apply ./openshift/01_webhook-kn-serving-jvm.yaml
 ```
 Test and then deploy the second version/revision, the native image
 ```shell
-oc apply ./openshift/01_webhook-kn-serving-native.yaml
+oc apply ./openshift/02_webhook-kn-serving-native.yaml
 ```
 You should have 2 versions of the app running with traffic splitted equally (50% each). 

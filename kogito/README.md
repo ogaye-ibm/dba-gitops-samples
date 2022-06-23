@@ -16,8 +16,8 @@
 - [github.com/kiegroup/kogito-examples](github.com/kiegroup/kogito-examples)
   - Quarkus and Spring Boot samples
   - Comprehensive coverage: 
-    - Decision, Process, Rules, OptaPlanner, Functions, Serverless workflow, etc...
-    - OpenShift, Infinispan, Grafana, ProKnative, Kafka, DRL, DMN, BPMN and BPMN 2.0, PMML, SVG
+    - Decision, Process, Rules, OptaPlanner, Functions, Serverless workflow, DRL, DMN, BPMN and BPMN 2.0, PMML, SVG, etc...
+    - OpenShift, Infinispan, Grafana, Prometheus, Keycloak, Knative, Kafka, etc...
   - Recommended samples to get started (Quarkus samples):
     1. dmn-quarkus-examples
     2. dmn-knative-quickstart-quarkus

@@ -1,2 +1,2 @@
-# dba-gitops-samples
-  Digital Business Automation - Gitops, CICD samples 
+# DBA Serverless and GitOps Samples
+## CP4BA Workflow Samples

@@ -1,7 +1,7 @@
 # DBA Serverless and GitOps Samples
 ## Kogito
 
-### What at a glance
+### Kogito at a glance
 - Open source project hosted by the [KIE Group](kie.org) with Red Hat as a leading contributor
 - Serverless workflow following the [CNCF Serverless Workflow specifications](https://serverlessworkflow.org/).
 - Business automation platforms focused on cloud-native (microservices) development, deployment, and execution. Integrating with and taking advantage of the latest technologies (Quarkus, knative, etc.)

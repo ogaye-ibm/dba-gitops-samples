@@ -2,9 +2,10 @@
 ## Serverless Content Event Webhook Receiver Quarkus Project
 ### Deploying to OpenShift
 
-This section allows you to test knative, revision, splitting traffic, etc..
+This samples in this section allow you to test knative, revision, splitting traffic, etc...
 
 #### Before you apply the manifests:
+- Make sure you are connected to OpenShift
 - Make sure you have the right images (jvm image and/or native image) either in your OpenShift project local registry or from your favorite registry (I use quay.io)
   - The pipelines sample in the [gitops](../../../gitops) section can build and deploy to OpenShift local registry or to any external registry
 - Edit accordingly the container section in the two knative serving manifest files described below

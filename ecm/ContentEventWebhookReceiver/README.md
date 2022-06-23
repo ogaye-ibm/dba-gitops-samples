@@ -1,10 +1,16 @@
-# webhook Project
+# DBA Serverless and GitOps Samples
+## Serverless Content Event Webhook Receiver Quarkus Project
 
-This project uses Quarkus, the Supersonic Subatomic Java Framework....
+### Introduction
+- This is a Quarkus, Serverless/Knative *modernization* of the ECM J2EE sample [https://github.com/ibm-ecm/ibm-content-platform-engine-samples](https://github.com/ibm-ecm/ibm-content-platform-engine-samples)
+  - This project contains code for creating a sample application that can be used as a Content Event Webhook Receiver. The application can be used as the base or inspiration for creating a custom Content Event Webhook Receiver application.
+  - Before using the Webhook Receiver sample application, you will need to prepare an object store on the Content Platform Engine server:
+  - For more information about Content Event Webhooks and how to set up the Content Platform Engine object store please refer to the legacy project ReaMe at [https://github.com/ibm-ecm/ibm-content-platform-engine-samples](https://github.com/ibm-ecm/ibm-content-platform-engine-samples)
+- Openshift deployment
+  - The folder [deployment](deployment) contain sample manifests for a test deployment to OpenShit. For a Production deployment however, the CICD samples (Tekton, ArgoCD) provide under [../../gitops](../../gitops) are more appropriate
 
-If you want to learn more about Quarkus, please visit its website: https://quarkus.io/ .
-
-## Running the application in dev mode
+### Running the code
+#### Running the application in dev mode
 
 You can run your application in dev mode that enables live coding using:
 ```shell script
@@ -13,7 +19,7 @@ You can run your application in dev mode that enables live coding using:
 
 > **_NOTE:_**  Quarkus now ships with a Dev UI, which is available in dev mode only at http://localhost:8080/q/dev/.
 
-## Packaging and running the application
+#### Packaging and running the application
 
 The application can be packaged using:
 ```shell script
@@ -31,7 +37,7 @@ If you want to build an _über-jar_, execute the following command:
 
 The application, packaged as an _über-jar_, is now runnable using `java -jar build/*-runner.jar`.
 
-## Creating a native executable
+#### Creating a native executable
 
 You can create a native executable using: 
 ```shell script
@@ -47,23 +53,14 @@ You can then execute your native executable with: `./build/webhook-1.0.0-SNAPSHO
 
 If you want to learn more about building native executables, please consult https://quarkus.io/guides/gradle-tooling.
 
-## Related Guides
+#### Related Guides
+- If you want to learn more about Quarkus, please visit its website: 
+- [https://quarkus.io](https://quarkus.io)
+- [https://quarkus.io/guides](https://quarkus.io/guides): 
 
-- Apache Kafka Client ([guide](https://quarkus.io/guides/kafka)): Connect to Apache Kafka with its native API
-- SmallRye GraphQL Client ([guide](https://quarkus.io/guides/smallrye-graphql-client)): Create GraphQL Clients
-- RESTEasy Classic ([guide](https://quarkus.io/guides/resteasy)): REST endpoint framework implementing JAX-RS and more
-- Apache Kafka Streams ([guide](https://quarkus.io/guides/kafka-streams)): Implement stream processing applications based on Apache Kafka
 
-## Provided Code
 
-### RESTEasy JAX-RS
 
-Easily start your RESTful Web Services
 
-[Related guide section...](https://quarkus.io/guides/getting-started#the-jax-rs-resources)
 
-### RESTEasy Reactive
 
-Easily start your Reactive RESTful Web Services
-
-[Related guide section...](https://quarkus.io/guides/getting-started-reactive#reactive-jax-rs-resources)

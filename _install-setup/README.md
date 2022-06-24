@@ -53,8 +53,14 @@ Clone [https://github.com/jbossdemocentral/rhdm7-install-demo](https://github.co
 ### Openshift Operator install
 
 ## RHPAM Kogito
+Guide to install Kogito on OpenShift: [https://docs.kogito.kie.org/latest/html_single/#chap-kogito-deploying-on-openshift](https://docs.kogito.kie.org/latest/html_single/#chap-kogito-deploying-on-openshift)
+
 ## RH OpenShift Serverless (Knative)
+
 ## RH OpenShift Pipelines (Tekton)
+
 ## RH OpenShift GitOps (ArgoCD)
+
 ## Flux (CD)
-## More, Guides, and References
+
+## More Guides and References

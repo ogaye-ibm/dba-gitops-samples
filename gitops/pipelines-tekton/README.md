@@ -3,6 +3,7 @@
 
 
 ## Table of Contents
+- [Introduction](#introduction)
 - [Use cases](#use-cases)
   - [Tekton for CI/CD](#tekton-for-cicd)
   - [Tekton for CI with Argo for CD](#tekton-for-ci-with-argo-for-cd)
@@ -15,20 +16,26 @@
 - [References and Guides](#references-and-guides)
 
 
+## Introduction
+- [Tekton](https://tekton.dev/) is an open-source framework for Continuous Integration and Delivery (CI/CD) systems.
+- [Red Hat OpenShift Pipelines](https://docs.openshift.com/container-platform/4.10/cicd/pipelines/understanding-openshift-pipelines.html) is built on top of Tekton
+- If you are new to Tekton and RH OpenShift Pipelines, then, to get familiar with the basics concepts, please jump to the last section: [References and Guides](#references-and-guides)
+
 ## Use cases
+
 ### Tekton for CI/CD
 ### Tekton for CI with Argo for CD
 
 ## Samples inventory
 Each subsection has a specific README for details
 ### Resources
-- *workspace-pvc.yaml*: a PVC to back the tekton workspaces used accross tekton taks
+- *workspace-pvc.yaml*: a PVC to back the Tekton [workspaces](https://tekton.dev/docs/pipelines/workspaces/) used across Tekton taks
 - *Template-docker-creds-secret.yaml*: use to create docker-creds-secret.yaml which is already listed on .gitignore and will be excluded from git check in
 - *Template-git-secret.yaml*: use to create git-src-secret.yaml and git-argocd-creds-secret.yaml which are already listed on .gitignore and will be excluded from git check in
 - *Template-redhat-pull-secret.yaml*: use to create (when needed, to get the RH OCP CLI for example) redhat-pull-secret.yaml which is already listed on .gitignore and will be excluded from git check in
 ### Tasks
 - *common/apply-ocp-manifest-task.yaml*: task that applies yaml manifests to OCP
-- *common/kakniko.yaml*: a copy of the google Kaniko taks to build image from src
+- *common/kaniko.yaml*: a copy of the google Kaniko taks to build image from src
 - *common/update-manifest-task.yaml*: a task that can edit/update argoCD git infra yaml manifests using Kustomize
 - *common/quarkus-graalvm/build-quarkus-graalvm-task.yaml*: to build a native executable with GraalVM
 - *common/quarkus-jvm/build-quarkus-jvm-task.yaml*: quarkus jvm build
@@ -44,9 +51,40 @@ Each subsection has a specific README for details
 - *04_event_listener.yaml*: EventListener to create a Tekton github weekhook
 
 ### Running the pipelines
+- **Create Git Repositories and Images Registries resources as needed:**
+```shell
+cp ./gitops/pipelines-tekton/resources/TEMPLATE-docker-creds-secret.yaml docker-creds-secret.yaml
+cp ./gitops/pipelines-tekton/resources/TEMPLATE-git-creds-secret.yaml git-src-creds-secret.yaml
+cp ./gitops/pipelines-tekton/resources/TEMPLATE-git-creds-secret.yaml git-argocd-creds-secret.yaml
+cp ./gitops/pipelines-tekton/resources/TEMPLATE-redhat-pull-secret.yaml redhat-pull-secret.yaml
+```
+ Edit/update *docker-creds-secret.yaml* to reflect your Image Registry.
+ Edit/update *git-src-creds-secret.yaml* to reflect your source code git repository.
+ Edit/update *git-argocd-creds-secret.yaml* to reflect your ArgoCd infra git repository, where your OCP deployment manifests reside.
+ Edit/update *redhat-pull-secret.yaml* to reflect your RH account pull secret. This is needed if you pull image from RH (e.g; OCP CLI).
+ 
+Verify all and install on OCP
+```shell
+oc apply -f ./gitops/pipelines-tekton/resources/docker-creds-secret.yaml
+oc apply -f ./gitops/pipelines-tekton/resources/git-src-creds-secret.yaml
+oc apply -f ./gitops/pipelines-tekton/resources/git-argocd-creds-secret.yaml
+oc apply -f ./gitops/pipelines-tekton/resources/redhat-pull-secret.yaml
+```
 
+- **Create the pipeline [workspace](https://tekton.dev/docs/pipelines/workspaces/) PVC**
+```shell
+oc apply -f ./gitops/pipelines-tekton/resources/workspace-pvc.yaml
+```
 ### References and Guides
+- Install Tekton CLI
+  - [https://github.com/tektoncd/cli](https://github.com/tektoncd/cli)
+- Tekton Tutorial:
+  - [https://github.com/openshift/pipelines-tutorial](https://github.com/openshift/pipelines-tutorial)
+- Tekton Home
+  - [https://tekton.dev](https://tekton.dev)
+  - [https://tekton.dev/docs](https://tekton.dev/docs/)
 
+https://docs.openshift.com/container-platform/4.10/cicd/pipelines/understanding-openshift-pipelines.html
 
 ```shell
 kubectl apply -f https://raw.githubusercontent.com/tektoncd/catalog/main/task/kaniko/0.5/kaniko.yaml

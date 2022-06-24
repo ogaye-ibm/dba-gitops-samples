@@ -8,9 +8,9 @@
 [Tekton for CI with Argo for CD](#tekton-for-ci-with-argo-for-cd)
 [Samples inventory](#samples-inventory)
 [Resources](#resources)
-[Triggers](#triggers)
 [Tasks](#tasks)
 [Pipelines](#pipelines)
+[Triggers](#triggers)
 [Running the pipelines](#running-the-pipelines)
 [References and Guide](#references-and-guide)
 
@@ -22,15 +22,28 @@
 ## Samples inventory
 Each subsection has a specific README for details
 - **Resources**
-- **Triggers**
+    - *workspace-pvc.yaml*: a PVC to back the tekton workspaces used accross tekton taks
+    - *Template-docker-creds-secret.yaml*: use to create docker-creds-secret.yaml which is already listed on .gitignore and will be excluded from git check in
+    - *Template-git-secret.yaml*: use to create git-src-secret.yaml and git-argocd-creds-secret.yaml which are already listed on .gitignore and will be excluded from git check in
+    - *Template-redhat-pull-secret.yaml*: use to create (when needed, to get the RH OCP CLI for example) redhat-pull-secret.yaml which is already listed on .gitignore and will be excluded from git check in
 - **Tasks**
+    - *common/apply-ocp-manifest-task.yaml*: task that applies yaml manifests to OCP
+    - *common/kakniko.yaml*: a copy of the google Kaniko taks to build image from src
+    - *common/update-manifest-task.yaml*: a task that can edit/update argoCD git infra yaml manifests using Kustomize
 - **Pipelines**
+- **Triggers**
+
 
 ### Resources
-### Triggers
+
 ### Tasks
+
 ### Pipelines
+
+### Triggers
+
 ### Running the pipelines
+
 ### References and Guide
 
 

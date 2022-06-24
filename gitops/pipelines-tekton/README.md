@@ -19,7 +19,7 @@
 ## Introduction
 - [Tekton](https://tekton.dev/) is an open-source framework for Continuous Integration and Delivery (CI/CD) systems.
 - [Red Hat OpenShift Pipelines](https://docs.openshift.com/container-platform/4.10/cicd/pipelines/understanding-openshift-pipelines.html) is built on top of Tekton
-- If you are new to Tekton and RH OpenShift Pipelines, then, to get familiar with the basics concepts, please jump to the last section: [References and Guides](#references-and-guides)
+- If you are new to Tekton and RH OpenShift Pipelines, then jump to the last section: [References and Guides](#references-and-guides) to get familiar with the basics concepts
 
 ## Use cases
 
@@ -50,7 +50,7 @@ Each subsection has a specific README for details
 - *03_trigger.yaml*: Trigger to create a Tekton github weekhook
 - *04_event_listener.yaml*: EventListener to create a Tekton github weekhook
 
-### Running the pipelines
+## Running the pipelines
 - **Create Git Repositories and Images Registries resources as needed:**
 ```shell
 cp ./gitops/pipelines-tekton/resources/TEMPLATE-docker-creds-secret.yaml docker-creds-secret.yaml
@@ -58,10 +58,10 @@ cp ./gitops/pipelines-tekton/resources/TEMPLATE-git-creds-secret.yaml git-src-cr
 cp ./gitops/pipelines-tekton/resources/TEMPLATE-git-creds-secret.yaml git-argocd-creds-secret.yaml
 cp ./gitops/pipelines-tekton/resources/TEMPLATE-redhat-pull-secret.yaml redhat-pull-secret.yaml
 ```
- Edit/update *docker-creds-secret.yaml* to reflect your Image Registry.
- Edit/update *git-src-creds-secret.yaml* to reflect your source code git repository.
- Edit/update *git-argocd-creds-secret.yaml* to reflect your ArgoCd infra git repository, where your OCP deployment manifests reside.
- Edit/update *redhat-pull-secret.yaml* to reflect your RH account pull secret. This is needed if you pull image from RH (e.g; OCP CLI).
+ Edit/update *docker-creds-secret.yaml* to reflect your Image Registry.  
+ Edit/update *git-src-creds-secret.yaml* to reflect your source code git repository.  
+ Edit/update *git-argocd-creds-secret.yaml* to reflect your ArgoCd infra git repository, where your OCP deployment manifests reside.  
+ Edit/update *redhat-pull-secret.yaml* to reflect your RH account pull secret. This is needed if you pull image from RH (e.g; OCP CLI).  
  
 Verify all and install on OCP
 ```shell
@@ -70,77 +70,103 @@ oc apply -f ./gitops/pipelines-tekton/resources/git-src-creds-secret.yaml
 oc apply -f ./gitops/pipelines-tekton/resources/git-argocd-creds-secret.yaml
 oc apply -f ./gitops/pipelines-tekton/resources/redhat-pull-secret.yaml
 ```
+Link secrets to service Account
+```shell
+oc secrets link pipeline webhook-git-src-basic-auth-secret
+# Optional: secret will be bound to kaniko workspace, no need to link to sa
+oc secrets link pipeline docker-creds
+oc secrets link pipeline 13162754-omar.gaye-ibm-pull-secret --for=pull
+```
 
 - **Create the pipeline [workspace](https://tekton.dev/docs/pipelines/workspaces/) PVC**
 ```shell
 oc apply -f ./gitops/pipelines-tekton/resources/workspace-pvc.yaml
 ```
+
+- **Creates Tasks as needed**
+```shell
+oc apply -f ./gitops/pipelines-tekton/tasks/common/
+oc apply -f ././gitops/pipelines-tekton/quarkus-jvm/
+oc apply -f ./gitops/pipelines-tekton/quarkus-graalvm/
+```
+Note: you can selectively install just what you want/need, all yaml files under a sub-folder will be install if not
+Note: to make sure you have the lastest Kaniko (image builder) task from Google, you can use this installation option:
+```shell
+oc apply -f https://raw.githubusercontent.com/tektoncd/catalog/main/task/kaniko/0.6/kaniko.yaml
+```
+
+- **Create Pipelines as needed**
+```shell
+oc apply -f ./gitops/pipelines-tekton/pipelines/build-jvm-push-deploy-pipeline.yaml
+```
+
+```shell
+oc apply -f ./gitops/pipelines-tekton/pipelines/build-graalvm-push-pipeline.yaml
+```
+
+```shell
+oc apply -f ./gitops/pipelines-tekton/pipelines/build-jvm-push-pipeline.yaml
+```
+
+```shell
+oc apply -f ./gitops/pipelines-tekton/pipelines/build-jvm-push-update-manifests-pipeline.yaml
+```
+
+- **Run a pipeline:**
+```shell
+tkn pipeline start build-push-deploy-kaniko \  
+ -w name=shared-workspace,claimName=webhook-pvc \  
+ -w name=ssh-creds,secret=webhook-git-src-basic-auth-secret \  
+ -w name=docker-reg-creds,secret=docker-creds \  
+ --showlog
+```
+
+```shell
+tkn pipeline start build-jvm-push-update-manifests \  
+ -w name=shared-workspace,claimName=webhook-pvc \  
+ -w name=ssh-creds,secret=webhook-git-src-basic-auth-secret \  
+ -w name=docker-reg-creds,secret=docker-creds \  
+ -w name=argocd-ssh-creds,secret=git-argocd-basic-auth-secret \  
+ --showlog
+```
+
+- **Quick Debugging:**
+```shell
+tkn resources ls
+tkn task ls
+tkn pipeline ls
+```
+```shell
+tkn pipelinerun ls
+```
+```shell
+tkn log pipelinerun <PIPELINERUNE_NAME>
+```
+```shell
+tkn taskrun ls
+```
+```shell
+oc get imagestream -n $NAMESPACE
+```
+
 ### References and Guides
 - Install Tekton CLI
   - [https://github.com/tektoncd/cli](https://github.com/tektoncd/cli)
-- Tekton Tutorial:
-  - [https://github.com/openshift/pipelines-tutorial](https://github.com/openshift/pipelines-tutorial)
 - Tekton Home
-  - [https://tekton.dev](https://tekton.dev)
-  - [https://tekton.dev/docs](https://tekton.dev/docs/)
-
-https://docs.openshift.com/container-platform/4.10/cicd/pipelines/understanding-openshift-pipelines.html
+    - [https://tekton.dev](https://tekton.dev)
+    - [https://tekton.dev/docs](https://tekton.dev/docs/)
+- Red Hat OpenShit Pipelines
+  - [Openshift Pipelines](https://docs.openshift.com/container-platform/4.10/cicd/pipelines/understanding-openshift-pipelines.html) 
+- Tekton Tutorial:
+    - [https://github.com/openshift/pipelines-tutorial](https://github.com/openshift/pipelines-tutorial)
+- Tekton Catalog (Task and Pipeline samples):
+  - [Tekton catalog](https://github.com/tektoncd/catalog/)
 
 ```shell
-kubectl apply -f https://raw.githubusercontent.com/tektoncd/catalog/main/task/kaniko/0.5/kaniko.yaml
-
-oc apply -f resources/workspace-pvc.yaml
-
-oc apply -f resources/git-src-creds-secret.yaml
-oc secrets link pipeline webhook-git-src-basic-auth-secret
-
-oc apply -f resources/docker-creds-secret.yaml
-# Optional: secret will be bound to kaniko workspace, no need to link to sa
-oc secrets link pipeline docker-creds
-
-oc apply -f resources/redhat-pull-secret.yaml
-oc secrets link pipeline 13162754-omar.gaye-ibm-pull-secret --for=pull
-
 oc create secret docker-registry registry-dockerconfig-secret \
 --docker-server=quay.io \
 --docker-username=omar.gaye-ibm \
---docker-password=ZTejas99! \
+--docker-password=TopSecret1! \
 --docker-email=gayeomar@hotmail.com
 oc secrets link pipeline registry-dockerconfig-secret
-
-oc apply -f tasks/common
-oc apply -f tasks/quarkus-jvm
-oc apply -f pipelines
-
-tkn pipeline start build-push-deploy-kaniko \ 
- -w name=shared-workspace,claimName=webhook-pvc \ 
- -w name=ssh-creds,secret=webhook-git-src-basic-auth-secret \ 
- -w name=docker-reg-creds,secret=docker-creds \ 
- --showlog
-
-
-
-gradle build -Dquarkus.package.type=native \ 
--Dquarkus.native.container-build=true \ 
--Dquarkus.native.native-image-xmx=8G \
--x test #optional
-
-gradle build -Dquarkus.package.type=native \
--Dquarkus.native.container-build=true \ 
--Dquarkus.native.native-image-xmx=8G \ 
--x test
-
-docker build -f src/main/docker/Dockerfile.native-micro -t webhook-native:0.0.3 .
-docker tag webhook-native:0.0.3 quay.io/omar.gaye-ibm/webhook-native:0.0.3
-docker push quay.io/omar.gaye-ibm/webhook-native:0.0.3
-
-
-tkn pipeline start build-jvm-push-update-manifests \ 
- -w name=shared-workspace,claimName=webhook-pvc \ 
- -w name=ssh-creds,secret=webhook-git-src-basic-auth-secret \ 
- -w name=docker-reg-creds,secret=docker-creds \ 
- -w name=argocd-ssh-creds,secret=git-argocd-basic-auth-secret \ 
- --showlog
-
-
 ```

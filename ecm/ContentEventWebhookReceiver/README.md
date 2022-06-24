@@ -47,16 +47,24 @@ Or, if you don't have GraalVM installed (see here for [how to](../../quarkus)), 
 ```shell script
 ./gradlew build -Dquarkus.package.type=native -Dquarkus.native.container-build=true
 ```
-**Note**: when building native image with the *quarkus.native.container-build=true* option, you might encounter Docker and 
+**Note:** when building native image with the *quarkus.native.container-build=true* option, you might encounter Docker and 
 resources issues. If so, go to your Docker Preferences and increase the Memory setting from the default 2GB. For 
 example, I build Native Image with Memory set to 8GB and using the following command
 ```shell
 ./gradlew build -Dquarkus.package.type=native -Dquarkus.native.container-build=true -Dquarkus.native.native-image-xmx=8G
 ```
 
+**Note:** Building and pushing manually:
+```shell
+docker build -f src/main/docker/Dockerfile.native-micro -t webhook-native:0.0.1 .
+docker tag webhook-native:0.0.1 quay.io/omar.gaye-ibm/webhook-native:0.0.1
+docker push quay.io/omar.gaye-ibm/webhook-native:0.0.1
+```
 
-
-You can then execute your native executable with: `./build/webhook-1.0.0-SNAPSHOT-runner`
+To execute a native executable from command line:
+```shell
+./build/webhook-1.0.0-SNAPSHOT-runner
+```
 
 If you want to learn more about building native executables, please consult https://quarkus.io/guides/gradle-tooling.
 

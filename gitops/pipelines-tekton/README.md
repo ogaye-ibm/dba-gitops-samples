@@ -21,33 +21,27 @@
 
 ## Samples inventory
 Each subsection has a specific README for details
-- **Resources**
-    - *workspace-pvc.yaml*: a PVC to back the tekton workspaces used accross tekton taks
-    - *Template-docker-creds-secret.yaml*: use to create docker-creds-secret.yaml which is already listed on .gitignore and will be excluded from git check in
-    - *Template-git-secret.yaml*: use to create git-src-secret.yaml and git-argocd-creds-secret.yaml which are already listed on .gitignore and will be excluded from git check in
-    - *Template-redhat-pull-secret.yaml*: use to create (when needed, to get the RH OCP CLI for example) redhat-pull-secret.yaml which is already listed on .gitignore and will be excluded from git check in
-- **Tasks**
-    - *common/apply-ocp-manifest-task.yaml*: task that applies yaml manifests to OCP
-    - *common/kakniko.yaml*: a copy of the google Kaniko taks to build image from src
-    - *common/update-manifest-task.yaml*: a task that can edit/update argoCD git infra yaml manifests using Kustomize
-    - *common/quarkus-graalvm/build-quarkus-graalvm-task.yaml*: to build a native executable with GraalVM
-    - *common/quarkus-jvm/build-quarkus-jvm-task.yaml*: quarkus jvm build
-- **Pipelines**
-    - **build-graalvm-push-pipeline.yaml**: to build a graalvm native executable and push to registry
-    - **build-jvm-push-deploy-pipeline.yaml**: to build a jvm artifact push to registry, and deploy to OCP
-    - **build-jvm-push-pipeline.yaml**: to build a jvm artifact and push to registry, can be use in tandem with ArgoCD
-    - **build-graalvm-push-pipeline.yaml**: to build a jvm artifact, push to registry, and update manifest files for ArgoCD
-- 
-- **Triggers**
-
-
 ### Resources
-
+- *workspace-pvc.yaml*: a PVC to back the tekton workspaces used accross tekton taks
+- *Template-docker-creds-secret.yaml*: use to create docker-creds-secret.yaml which is already listed on .gitignore and will be excluded from git check in
+- *Template-git-secret.yaml*: use to create git-src-secret.yaml and git-argocd-creds-secret.yaml which are already listed on .gitignore and will be excluded from git check in
+- *Template-redhat-pull-secret.yaml*: use to create (when needed, to get the RH OCP CLI for example) redhat-pull-secret.yaml which is already listed on .gitignore and will be excluded from git check in
 ### Tasks
-
+- *common/apply-ocp-manifest-task.yaml*: task that applies yaml manifests to OCP
+- *common/kakniko.yaml*: a copy of the google Kaniko taks to build image from src
+- *common/update-manifest-task.yaml*: a task that can edit/update argoCD git infra yaml manifests using Kustomize
+- *common/quarkus-graalvm/build-quarkus-graalvm-task.yaml*: to build a native executable with GraalVM
+- *common/quarkus-jvm/build-quarkus-jvm-task.yaml*: quarkus jvm build
 ### Pipelines
-
+- **build-graalvm-push-pipeline.yaml**: to build a graalvm native executable and push to registry
+- **build-jvm-push-deploy-pipeline.yaml**: to build a jvm artifact push to registry, and deploy to OCP
+- **build-jvm-push-pipeline.yaml**: to build a jvm artifact and push to registry, can be use in tandem with ArgoCD
+- **build-graalvm-push-pipeline.yaml**: to build a jvm artifact, push to registry, and update manifest files for ArgoCD
 ### Triggers
+- *01_binding.yaml*: TriggerBinding to create a Tekton github weekhook
+- *02_template.yaml*: TriggerTemplate to create a Tekton github weekhook
+- *03_trigger.yaml*: Trigger to create a Tekton github weekhook
+- *04_event_listener.yaml*: EventListener to create a Tekton github weekhook
 
 ### Running the pipelines
 

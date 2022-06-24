@@ -3,16 +3,16 @@
 
 
 ## Table of Contents
-[Use cases](#use-cases)
-[Tekton for CI/CD](#tekton-for-cicd)
-[Tekton for CI with Argo for CD](#tekton-for-ci-with-argo-for-cd)
-[Samples inventory](#samples-inventory)
-[Resources](#resources)
-[Tasks](#tasks)
-[Pipelines](#pipelines)
-[Triggers](#triggers)
-[Running the pipelines](#running-the-pipelines)
-[References and Guide](#references-and-guide)
+- [Use cases](#use-cases)
+  - [Tekton for CI/CD](#tekton-for-cicd)
+  - [Tekton for CI with Argo for CD](#tekton-for-ci-with-argo-for-cd)
+- [Samples inventory](#samples-inventory)
+  - [Resources](#resources)
+  - [Tasks](#tasks)
+  - [Pipelines](#pipelines)
+  - [Triggers](#triggers)
+- [Running the pipelines](#running-the-pipelines)
+- [References and Guide](#references-and-guide)
 
 
 ## Use cases

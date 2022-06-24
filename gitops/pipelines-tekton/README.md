@@ -12,7 +12,7 @@
   - [Pipelines](#pipelines)
   - [Triggers](#triggers)
 - [Running the pipelines](#running-the-pipelines)
-- [References and Guide](#references-and-guide)
+- [References and Guides](#references-and-guides)
 
 
 ## Use cases
@@ -30,7 +30,14 @@ Each subsection has a specific README for details
     - *common/apply-ocp-manifest-task.yaml*: task that applies yaml manifests to OCP
     - *common/kakniko.yaml*: a copy of the google Kaniko taks to build image from src
     - *common/update-manifest-task.yaml*: a task that can edit/update argoCD git infra yaml manifests using Kustomize
+    - *common/quarkus-graalvm/build-quarkus-graalvm-task.yaml*: to build a native executable with GraalVM
+    - *common/quarkus-jvm/build-quarkus-jvm-task.yaml*: quarkus jvm build
 - **Pipelines**
+    - **build-graalvm-push-pipeline.yaml**: to build a graalvm native executable and push to registry
+    - **build-jvm-push-deploy-pipeline.yaml**: to build a jvm artifact push to registry, and deploy to OCP
+    - **build-jvm-push-pipeline.yaml**: to build a jvm artifact and push to registry, can be use in tandem with ArgoCD
+    - **build-graalvm-push-pipeline.yaml**: to build a jvm artifact, push to registry, and update manifest files for ArgoCD
+- 
 - **Triggers**
 
 
@@ -44,7 +51,7 @@ Each subsection has a specific README for details
 
 ### Running the pipelines
 
-### References and Guide
+### References and Guides
 
 
 ```shell

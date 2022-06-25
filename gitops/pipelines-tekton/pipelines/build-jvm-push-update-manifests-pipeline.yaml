@@ -46,7 +46,8 @@ spec:
         - name: url
           value: $(params.git-url)
         - name: subdirectory
-          value: ""
+          #value: ""
+          value: 'ecm/ContentEventWebhookReceiver'
         - name: deleteExisting
           value: "true"
         - name: revision

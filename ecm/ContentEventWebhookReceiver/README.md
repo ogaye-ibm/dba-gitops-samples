@@ -51,7 +51,7 @@ Or, if you don't have GraalVM installed (see here for [how to](../../quarkus)), 
 resources issues. If so, go to your Docker Preferences and increase the Memory setting from the default 2GB. For 
 example, I build Native Image with Memory set to 8GB and using the following command
 ```shell
-./gradlew build -Dquarkus.package.type=native -Dquarkus.native.container-build=true -Dquarkus.native.native-image-xmx=8G
+./gradlew build -Dquarkus.package.type=native -Dquarkus.native.container-build=true -Dquarkus.native.native-image-xmx=8G -x test 
 ```
 
 **Note:** Building and pushing manually:

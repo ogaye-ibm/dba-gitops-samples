@@ -65,10 +65,10 @@ cp ./gitops/pipelines-tekton/resources/TEMPLATE-redhat-pull-secret.yaml redhat-p
  
 Verify all and install on OCP
 ```shell
-oc apply -f ./gitops/pipelines-tekton/resources/docker-creds-secret.yaml
-oc apply -f ./gitops/pipelines-tekton/resources/git-src-creds-secret.yaml
-oc apply -f ./gitops/pipelines-tekton/resources/git-argocd-creds-secret.yaml
-oc apply -f ./gitops/pipelines-tekton/resources/redhat-pull-secret.yaml
+oc apply -f gitops/pipelines-tekton/resources/docker-creds-secret.yaml
+oc apply -f gitops/pipelines-tekton/resources/git-src-creds-secret.yaml
+oc apply -f gitops/pipelines-tekton/resources/git-argocd-creds-secret.yaml
+oc apply -f gitops/pipelines-tekton/resources/redhat-pull-secret.yaml
 ```
 Link secrets to service Account
 ```shell
@@ -86,8 +86,8 @@ oc apply -f ./gitops/pipelines-tekton/resources/workspace-pvc.yaml
 - **Creates Tasks as needed**
 ```shell
 oc apply -f ./gitops/pipelines-tekton/tasks/common/
-oc apply -f ././gitops/pipelines-tekton/quarkus-jvm/
-oc apply -f ./gitops/pipelines-tekton/quarkus-graalvm/
+oc apply -f ./gitops/pipelines-tekton/tasks/quarkus-jvm/
+oc apply -f ./gitops/pipelines-tekton/tasks/quarkus-graalvm/
 ```
 Note: you can selectively install just what you want/need, all yaml files under a sub-folder will be install if not
 Note: to make sure you have the lastest Kaniko (image builder) task from Google, you can use this installation option:
@@ -114,10 +114,19 @@ oc apply -f ./gitops/pipelines-tekton/pipelines/build-jvm-push-update-manifests-
 
 - **Run a pipeline:**
 ```shell
-tkn pipeline start build-push-deploy-kaniko \  
+tkn pipeline start build-jvm-push \  
  -w name=shared-workspace,claimName=webhook-pvc \  
  -w name=ssh-creds,secret=webhook-git-src-basic-auth-secret \  
  -w name=docker-reg-creds,secret=docker-creds \  
+ --showlog
+```
+
+```shell 
+tkn pipeline start build-jvm-push-deploy \  
+ -w name=shared-workspace,claimName=webhook-pvc \  
+ -w name=ssh-creds,secret=webhook-git-src-basic-auth-secret \  
+ -w name=docker-reg-creds,secret=docker-creds \  
+ -w name=argocd-ssh-creds,secret=git-argocd-basic-auth-secret \  
  --showlog
 ```
 
@@ -132,7 +141,6 @@ tkn pipeline start build-jvm-push-update-manifests \
 
 - **Quick Debugging:**
 ```shell
-tkn resources ls
 tkn task ls
 tkn pipeline ls
 ```
@@ -140,7 +148,7 @@ tkn pipeline ls
 tkn pipelinerun ls
 ```
 ```shell
-tkn log pipelinerun <PIPELINERUNE_NAME>
+tkn pipelinerun <PIPELINERUN_NAME> logs
 ```
 ```shell
 tkn taskrun ls

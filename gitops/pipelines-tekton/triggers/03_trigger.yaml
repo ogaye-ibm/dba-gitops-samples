@@ -25,4 +25,4 @@ metadata:
   name: github-secret
 type: Opaque
 stringData:
-  secretToken: "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"
+  secretToken: "123-my-secret-token"

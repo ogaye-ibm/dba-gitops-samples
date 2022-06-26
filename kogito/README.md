@@ -34,6 +34,9 @@
 
 ### Other References
 - https://docs.jboss.org/kogito/release/latest/html_single
+- https://serverlessworkflow.github.io/
+- https://github.com/serverlessworkflow/specification
+- 
 
 
 

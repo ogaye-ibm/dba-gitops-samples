@@ -151,11 +151,45 @@ tkn pipelinerun ls
 tkn pipelinerun <PIPELINERUN_NAME> logs
 ```
 ```shell
+tkn pipeline logs -f
+```
+```shell
 tkn taskrun ls
 ```
 ```shell
 oc get imagestream -n $NAMESPACE
 ```
+
+**Trigger: Creating pre-commit webhook:**
+[Triggers](https://github.com/openshift/pipelines-tutorial#triggers) enable you to hook a Pipelines to respond to external github events (push events, pull requests etc)
+- TriggerTemplate: a resource which have parameters that can be substituted anywhere within the resources of template.
+- TriggerBindings: a map that enable you to capture fields from an event and store them as parameters, and replace them in triggerTemplate whenever an event occurs.
+- Trigger: combines TriggerTemplate, TriggerBindings and interceptors. They are used as ref inside the EventListener.
+- Event Listener: sets up a Service and listens for events. It also connects a TriggerTemplate to a TriggerBinding, into an addressable endpoint (the event sink)
+
+Install the trigger:
+```shell
+oc apply -f ./gitops/pipelines-tekton/triggers/
+```
+Expose the eventlistener service as a route:
+```shell
+ oc expose svc el-ecm-webhook-eventlistener
+```
+Get the webhook-url
+```shell
+echo "URL: $(oc  get route el-ecm-webhook-eventlistener --template='http://{{.spec.host}}')"
+```
+Result should look like this:
+`URL: http://el-ecm-webhook-eventlistener-default.itzroks-550004cpmg-mnnlr7-4b4a324f027aea19c5cbc0c3275c4656-0000.us-east.containers.appdomain.cloud`
+
+Configure webhook manually:
+- Go to you src code git repo
+- Go to Settings > Webhook
+- Click on Add Webhook > Add
+
+to payload URL > Select Content type as application/json > Add secret eg: 1234567 > Click on Add Webhook
+
+
 
 ### References and Guides
 - Install Tekton CLI
@@ -163,6 +197,7 @@ oc get imagestream -n $NAMESPACE
 - Tekton Home
     - [https://tekton.dev](https://tekton.dev)
     - [https://tekton.dev/docs](https://tekton.dev/docs/)
+    - [https://tekton.dev/vault/pipelines-v0.14.3/](https://tekton.dev/vault/pipelines-v0.14.3/)
 - Red Hat OpenShit Pipelines
   - [Openshift Pipelines](https://docs.openshift.com/container-platform/4.10/cicd/pipelines/understanding-openshift-pipelines.html) 
 - Tekton Tutorial:

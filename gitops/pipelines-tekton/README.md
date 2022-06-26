@@ -160,36 +160,40 @@ tkn taskrun ls
 oc get imagestream -n $NAMESPACE
 ```
 
-**Trigger: Creating pre-commit webhook:**
+- **Trigger: Creating pre-commit webhook:**  
 [Triggers](https://github.com/openshift/pipelines-tutorial#triggers) enable you to hook a Pipelines to respond to external github events (push events, pull requests etc)
 - TriggerTemplate: a resource which have parameters that can be substituted anywhere within the resources of template.
 - TriggerBindings: a map that enable you to capture fields from an event and store them as parameters, and replace them in triggerTemplate whenever an event occurs.
 - Trigger: combines TriggerTemplate, TriggerBindings and interceptors. They are used as ref inside the EventListener.
 - Event Listener: sets up a Service and listens for events. It also connects a TriggerTemplate to a TriggerBinding, into an addressable endpoint (the event sink)
 
-Install the trigger:
+ **Step 1:** Install the trigger CRs:
 ```shell
 oc apply -f ./gitops/pipelines-tekton/triggers/
 ```
-Expose the eventlistener service as a route:
+ **Step 2:** Expose the eventlistener service as a route:
 ```shell
  oc expose svc el-ecm-webhook-eventlistener
 ```
-Get the webhook-url
+ **Step 3:** Get the webhook-url
 ```shell
 echo "URL: $(oc  get route el-ecm-webhook-eventlistener --template='http://{{.spec.host}}')"
 ```
-Result should look like this:
+Result should look like this:  
 `URL: http://el-ecm-webhook-eventlistener-default.itzroks-550004cpmg-mnnlr7-4b4a324f027aea19c5cbc0c3275c4656-0000.us-east.containers.appdomain.cloud`
-
-Configure webhook manually:
+ **Step 4:** Configure webhook manually:
 - Go to you src code git repo
 - Go to Settings > Webhook
 - Click on Add Webhook > Add
 
-to payload URL > Select Content type as application/json > Add secret eg: 1234567 > Click on Add Webhook
+to payload URL > Select Content type as application/json > Add your [secret](triggers/03_trigger.yaml): *123-my-secret-token* > Click on Add Webhook  
+![pre-commit-webhook](../../images/github-webhook.png)
 
-
+ Test with an empty commit:  
+```shell
+git commit -m "empty commit to test git webhook" --allow-empty && git push
+```
+Your pipeline should be running...
 
 ### References and Guides
 - Install Tekton CLI

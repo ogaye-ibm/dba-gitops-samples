@@ -146,6 +146,14 @@ tkn pipeline start build-jvm-push-update-manifests \
  -w name=argocd-ssh-creds,secret=git-argocd-basic-auth-secret \  
  --showlog
 ```
+```shell
+tkn pipeline start build-graalvm-push \  
+ -w name=shared-workspace,claimName=webhook-pvc \  
+ -w name=ssh-creds,secret=webhook-git-src-basic-auth-secret \  
+ -w name=docker-reg-creds,secret=docker-creds \  
+ --showlog    
+```
+
 - **Quick Debugging:**
 ```shell
 tkn task ls

@@ -12,7 +12,7 @@ spec:
   steps:
     - name: build
       image: $(inputs.params.jdk-image)
-      workingDir: /workspace/src-build-workspace
+      workingDir: $(workspaces.src-build-workspace.path)/ecm/ContentEventWebhookReceiver
       command: [ "/bin/bash" ]
       args:
         - -c
@@ -23,7 +23,7 @@ spec:
           ls -l $JAVA_HOME/bin
           gu install native-image
           ./gradlew build -Dquarkus.package.type=native -x test --no-daemon
-          ls -l
+          ls -la
           echo "*********************"
           ls -l ./build
           echo "*********************"

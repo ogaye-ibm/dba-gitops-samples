@@ -7,7 +7,7 @@ spec:
     - name: jdk-image
       description: Java image for src build
       default: 'docker.io/gradle'
-      #'registry.access.redhat.com/ubi8/openjdk-17'
+      #default: 'registry.access.redhat.com/ubi8/openjdk-17'
       #default: 'ghcr.io/graalvm/graalvm-ce'
   workspaces:
     - name: src-build-workspace
@@ -21,18 +21,14 @@ spec:
         - |
           set -e
           pwd
-          echo "_________"
-          #cd ecm/ContentEventWebhookReceiver
-          ls -l
-          echo "_________"
           #echo $JAVA_HOME
           #ls -l $JAVA_HOME/bin
+          echo "******"
           #./gradlew --version
-          echo "******"
-          ls -a
-          echo "******"
-          gradle build -x test --stacktrace --no-daemon
-          #ls -l
+          #ls -a
+          #gradlew build -x test --stacktrace --no-daemon
+          gradle build -x test --no-daemon
+          #ls -la
           echo "*********************"
           ls -l ./build
           echo "*********************"

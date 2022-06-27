@@ -6,28 +6,33 @@ spec:
   params:
     - name: jdk-image
       description: Java image for src build
-      default: 'registry.access.redhat.com/ubi8/openjdk-17'
+      default: 'docker.io/gradle'
+      #'registry.access.redhat.com/ubi8/openjdk-17'
       #default: 'ghcr.io/graalvm/graalvm-ce'
   workspaces:
     - name: src-build-workspace
   steps:
     - name: build
       image: $(inputs.params.jdk-image)
-      workingDir: /workspace/src-build-workspace/ecm/ContentEventWebhookReceiver
+      workingDir: $(workspaces.src-build-workspace.path)/ecm/ContentEventWebhookReceiver
       command: [ "/bin/bash" ]
       args:
         - -c
         - |
           set -e
           pwd
+          echo "_________"
+          #cd ecm/ContentEventWebhookReceiver
           ls -l
-          #echo "_________"
-          cd ecm/ContentEventWebhookReceiver
-          #echo "_________"
-          echo $JAVA_HOME
-          ls -l $JAVA_HOME/bin
-          ./gradlew build -x test --no-daemon
-          ls -l
+          echo "_________"
+          #echo $JAVA_HOME
+          #ls -l $JAVA_HOME/bin
+          #./gradlew --version
+          echo "******"
+          ls -a
+          echo "******"
+          gradle build -x test --stacktrace --no-daemon
+          #ls -l
           echo "*********************"
           ls -l ./build
           echo "*********************"

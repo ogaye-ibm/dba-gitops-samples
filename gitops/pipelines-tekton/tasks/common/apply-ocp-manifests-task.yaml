@@ -14,7 +14,7 @@ spec:
     - name: apply
       image: registry.redhat.io/openshift4/ose-cli:latest
       #image: quay.io/openshift/origin-cli:latest
-      workingDir: /workspace/ocp-cli-workspace
+      workingDir: $(workspaces.ocp-cli-workspace.path)/ecm/ContentEventWebhookReceiver
       command: ["/bin/bash", "-c"]
       args:
         - |-

@@ -44,12 +44,13 @@ spec:
       description: URL of the image just built.
   steps:
     - name: build-and-push
-      workingDir: $(workspaces.source.path)
+      #workingDir: $(workspaces.source.path)
+      workingDir: $(workspaces.source.path)/ecm/ContentEventWebhookReceiver
       image: $(params.BUILDER_IMAGE)
       args:
         - $(params.EXTRA_ARGS)
         - --dockerfile=$(params.DOCKERFILE)
-        - --context=$(workspaces.source.path)/$(params.CONTEXT) # The user does not need to care the workspace and the source.
+        - --context=$(workspaces.source.path)/ecm/ContentEventWebhookReceiver/$(params.CONTEXT) # The user does not need to care the workspace and the source.
         - --destination=$(params.IMAGE)
         - --digest-file=$(results.IMAGE_DIGEST.path)
       # kaniko assumes it is running as root, which means this example fails on platforms

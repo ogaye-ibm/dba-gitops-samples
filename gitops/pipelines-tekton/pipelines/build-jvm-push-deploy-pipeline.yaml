@@ -47,8 +47,7 @@ spec:
     - name: url
       value: $(params.git-url)
     - name: subdirectory
-      #value: ""
-      value: 'ecm/ContentEventWebhookReceiver'
+      value: ""
     - name: deleteExisting
       value: "true"
     - name: revision
@@ -56,9 +55,9 @@ spec:
   - name: build-quarkus-jvm
     taskRef:
       name: build-quarkus-jvm
-    params:
-    - name: jdk-image
-      value: 'registry.access.redhat.com/ubi8/openjdk-17'
+    #params:
+    #- name: jdk-image
+      #value: 'registry.access.redhat.com/ubi8/openjdk-17'
     workspaces:
       - name: src-build-workspace
         workspace: shared-workspace

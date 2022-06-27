@@ -126,7 +126,6 @@ tkn pipeline start build-jvm-push-deploy \
  -w name=shared-workspace,claimName=webhook-pvc \  
  -w name=ssh-creds,secret=webhook-git-src-basic-auth-secret \  
  -w name=docker-reg-creds,secret=docker-creds \  
- -w name=argocd-ssh-creds,secret=git-argocd-basic-auth-secret \  
  --showlog
 ```
 
@@ -139,6 +138,14 @@ tkn pipeline start build-jvm-push-update-manifests \
  --showlog
 ```
 
+```shell
+tkn pipeline start build-jvm-push-update-manifests \  
+ -w name=shared-workspace,claimName=webhook-pvc \  
+ -w name=ssh-creds,secret=webhook-git-src-basic-auth-secret \  
+ -w name=docker-reg-creds,secret=docker-creds \  
+ -w name=argocd-ssh-creds,secret=git-argocd-basic-auth-secret \  
+ --showlog
+```
 - **Quick Debugging:**
 ```shell
 tkn task ls
@@ -208,12 +215,3 @@ Your pipeline should be running...
     - [https://github.com/openshift/pipelines-tutorial](https://github.com/openshift/pipelines-tutorial)
 - Tekton Catalog (Task and Pipeline samples):
   - [Tekton catalog](https://github.com/tektoncd/catalog/)
-
-```shell
-oc create secret docker-registry registry-dockerconfig-secret \
---docker-server=quay.io \
---docker-username=omar.gaye-ibm \
---docker-password=TopSecret1! \
---docker-email=gayeomar@hotmail.com
-oc secrets link pipeline registry-dockerconfig-secret
-```

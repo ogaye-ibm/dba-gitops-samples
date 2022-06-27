@@ -13,13 +13,17 @@ spec:
   steps:
     - name: build
       image: $(inputs.params.jdk-image)
-      workingDir: /workspace/src-build-workspace
+      workingDir: /workspace/src-build-workspace/ecm/ContentEventWebhookReceiver
       command: [ "/bin/bash" ]
       args:
         - -c
         - |
           set -e
           pwd
+          ls -l
+          #echo "_________"
+          cd ecm/ContentEventWebhookReceiver
+          #echo "_________"
           echo $JAVA_HOME
           ls -l $JAVA_HOME/bin
           ./gradlew build -x test --no-daemon

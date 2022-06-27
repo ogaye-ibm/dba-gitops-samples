@@ -19,6 +19,9 @@ spec:
     - name: git-revision
       description: Revision/branch, master, main, etc
       default: main
+    - name: git-infra-url
+      description: Infra, ArgoCD repo, where the OCP deploy manifests are hosted
+      default: 'http://github.com/ogaye-ibm/ecm-cicd-argocd'
     - name: IMAGE_REGISTRY
       description: Registry to push the image to
       #default: 'image-registry.openshift-image-registry.svc:5000/$NAMESPACE:0.0.3'
@@ -87,7 +90,7 @@ spec:
           workspace: argocd-ssh-creds
       params:
         - name: GIT_REPOSITORY
-          value: 'http://github.com/ogaye-ibm/ecm-cicd-argocd'
+          value: "$(params.git-infra-url)"
         - name: FEATURE
           value: 'feature'
         - name: CURRENT_IMAGE

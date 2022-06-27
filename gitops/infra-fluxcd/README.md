@@ -8,8 +8,8 @@
 - Provides GitOps for both apps and infrastructure
 - Just like ArgoCD, Flux is a tool that matches your live environments with the desired states defined and stored in your Git repository. 
 - Mostly CLI-first approach, UI being just a supplementary add-on, not as mature as its ArgoCD couterpart
-- [Argo CD vs Flux CD](https://rajputvaibhav.medium.com/argo-cd-vs-flux-cd-right-gitops-tool-for-your-kubernetes-cluster-c71cff489d26)
-- [Argo CD vs Flux CD 2](https://thenewstack.io/gitops-on-kubernetes-deciding-between-argo-cd-and-flux/)
+- [Argo CD vs Flux CD 1](https://thenewstack.io/gitops-on-kubernetes-deciding-between-argo-cd-and-flux/)
+- [Argo CD vs Flux CD 2](https://rajputvaibhav.medium.com/argo-cd-vs-flux-cd-right-gitops-tool-for-your-kubernetes-cluster-c71cff489d26)
 - Works with any Kubernetes platforms
 - Designed with security in mind
 - [Flux Home](https://fluxcd.io)

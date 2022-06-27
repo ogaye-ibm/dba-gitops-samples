@@ -6,6 +6,7 @@ Digital Business Automation, serverless cloud-native business automation and git
 
 ## Table of contents
 
+- [A home-brew short blog on Serverless](https://community.ibm.com/community/user/automation/blogs/allen-chan1/2022/06/16/42-serverless)
 - [The Kie projects](kie): intro to the Kie projects
 - [Install, setup](_install-setup/README.md): runtimes, middlewares local and Openshift Installation and configuration
 - [Quarkus](quarkus): getting started with Quarkus and GraalVM native images

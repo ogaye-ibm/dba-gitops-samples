@@ -51,6 +51,7 @@ Follow the same procedure as for RH PAM above. For RH DM, the repo to clone is:
 Clone [https://github.com/jbossdemocentral/rhdm7-install-demo](https://github.com/jbossdemocentral/rhdm7-install-demo)
 
 ### Openshift Operator install
+ [https://docs.openshift.com/container-platform/4.10/cicd/gitops/installing-openshift-gitops.html](https://docs.openshift.com/container-platform/4.10/cicd/gitops/installing-openshift-gitops.html)
 
 ## RHPAM Kogito
 Guide to install Kogito on OpenShift: [https://docs.kogito.kie.org/latest/html_single/#chap-kogito-deploying-on-openshift](https://docs.kogito.kie.org/latest/html_single/#chap-kogito-deploying-on-openshift)
@@ -62,5 +63,19 @@ Guide to install Kogito on OpenShift: [https://docs.kogito.kie.org/latest/html_s
 ## RH OpenShift GitOps (ArgoCD)
 
 ## Flux (CD)
+- **Mac CLI install:**
+```shell
+brew install fluxcd/tap/flux
+```
+- **Bash install:**
+```shell
+curl -s https://fluxcd.io/install.sh | sudo bash
+```
+A Boostrap command will install the Flux CRs on Kubernetes/OCP, see [Getting started ReadMe](../gitops/infra-fluxcd/README.md) for details.
+
+- **OCP Operator Flux CRs install**
+  From OCP OperatorHub, look for *Flux* and install...
+
+  ![flux-operator](../images/flux-operator.png)
 
 ## More Guides and References

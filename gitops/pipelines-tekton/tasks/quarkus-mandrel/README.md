@@ -1,2 +1,2 @@
-# DBA Serverless Samples
-### Quarkus Native Image with Mandrel
+# DBA Serverless and GitOps Samples
+### GitOps Samples - Quarkus Native Image with Mandrel

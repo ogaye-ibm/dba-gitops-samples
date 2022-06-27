@@ -66,7 +66,8 @@ spec:
         ls -l
         git add $(params.KUSTOMIZATION_PATH)
         git commit -m "[ci] Image digest updated"
-        git remote set-url origin https://<USER>:<TOKEN>@github.com/<USER>/ecm-cicd-argocd.git
+        #git remote set-url origin https://<USER>:<TOKEN>@github.com/<USER>/ecm-cicd-argocd.git
+        git remote set-url origin https://ogaye-ibm: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@github.com/ogaye-ibm/ecm-cicd-argocd.git
 
         git push
         #git push  --set-upstream origin $feature

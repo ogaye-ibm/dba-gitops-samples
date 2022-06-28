@@ -61,6 +61,16 @@ Guide to install Kogito on OpenShift: [https://docs.kogito.kie.org/latest/html_s
 ## RH OpenShift Pipelines (Tekton)
 
 ## RH OpenShift GitOps (ArgoCD)
+- Detailed installation instruction on [Red Hat docs](https://docs.openshift.com/container-platform/4.10/cicd/gitops/installing-openshift-gitops.html)
+- Install from Console summary:
+  - Go to OCP OperatorHub
+  - Search for **Red Hat OpenShift GitOps**
+  - Click Install
+  - Provided APIs: **AppProject**, **Argo CD**, **Application**, **ApplicationSet**
+  - RH OpenShift GitOps Operator automatically creates a ready-to-use **Argo CD** instance that is available in the openshift-gitops namespace.
+  - Navigate to the red hat applications menu icon ![icon](../images/argo-shortcut.png) → OpenShift GitOps → Cluster Argo CD. The login page of the Argo CD UI is displayed in a new window. Two options to login:
+    - Login to Argo Console using OpenShift SSO: select the *LOG IN VIA OPENSHIF* option in the UI
+    - Login using the user *admin* that has been created by the Operator. To retrieve the password, go to Secret, select the *openshift-gitops-cluster* instance to display the password, copy the password
 
 ## Flux (CD)
 - **Mac CLI install:**

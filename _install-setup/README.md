@@ -70,7 +70,7 @@ Guide to install Kogito on OpenShift: [https://docs.kogito.kie.org/latest/html_s
   - RH OpenShift GitOps Operator automatically creates a ready-to-use **Argo CD** instance that is available in the openshift-gitops namespace.
   - Navigate to the red hat applications menu icon ![icon](../images/argo-shortcut.png) → OpenShift GitOps → Cluster Argo CD. The login page of the Argo CD UI is displayed in a new window. Two options to login:
     - Login to Argo Console using OpenShift SSO: select the *LOG IN VIA OPENSHIF* option in the UI
-    - Login using the user *admin* that has been created by the Operator. To retrieve the password, go to Secret, select the *openshift-gitops-cluster* instance to display the password, copy the password
+    - Login using the user *admin* that has been created by the Operator. To retrieve the password, go to Secret on project **openshift-gitops**, select the *openshift-gitops-cluster* instance to display the password, copy the password
 
 ## Flux (CD)
 - **Mac CLI install:**

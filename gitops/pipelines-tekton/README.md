@@ -27,20 +27,23 @@
 ![tkn-cicd](../../images/webhook-tkn-ocp.png)  
 
 High level Flow:  
- 1 A git push triggers a tkn webhook to start the tkn pipeline  
- 2 tkn pipeline *Build Src Task* clones and compiles src (e.g. mvn or gradle for a quarkus src) and generates artifact  
- 3 tkn pipeline *Build Image Task* builds and pushes image to Image Registry (OCP Internal Registry, quay.io, etc...)  
- 4 tkn *Deploy Task fetches* images from Registry and deploys to OCP (create a kn service in this example)  
+1 git (src) push   
+2 git tkn webhook triggers the tkn pipeline  
+3 tkn pipeline *Build Src Task* clones and compiles src (e.g. mvn or gradle for a quarkus src) and generates artifact   
+4 tkn pipeline *Build Image Task* builds and pushes image to Image Registry (OCP Internal Registry, quay.io, etc...)  
+5 tkn *Deploy Task fetches* images from Registry and deploys to OCP (create a kn service in this example)  
 
 ### Tekton for CI with Argo for CD
 ![tkn-cicd](../../images/tkn-argo-ocp.png)
 
 High level Flow:  
-1 a git (src) push triggers a tkn webhook to start the tkn pipeline  
-2 tkn *Build Src Task* clones and compiles src (e.g. mvn or gradle for a quarkus src) and generates artifact  
-3 tkn *Build Image Task* builds and pushes image to Image Registry (OCP Internal Registry, quay.io, etc...)  
-4 tkn *Update Manifest Task* update the deployment manifest in the Infra (ArgoCD) git repo  
-5 ArgoCD sync current state (actual deploy on OCP) to desired state (defined by latest manifests in Infra/ArgoCD repo)  
+1 git (src) push   
+2 git tkn webhook triggers the tkn pipeline  
+3 tkn *Build Src Task* clones and compiles src (e.g. mvn or gradle for a quarkus src) and generates artifact  
+4 tkn *Build Image Task* builds and publishes image to Image Registry (OCP Internal Registry, quay.io, etc...)  
+5 tkn *Update Manifest Task* update the deployment manifest in the Infra (ArgoCD) git repo  
+6 ArgoCD pulls (webhook) desired state from git Infra  
+7 ArgoCD sync current state (actual deploy on OCP) to desired state (defined by latest manifests in Infra/ArgoCD repo)  
 
 ## Samples inventory
 Each subsection has a specific README for details

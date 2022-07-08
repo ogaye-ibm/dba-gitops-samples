@@ -1,0 +1,32 @@
+apiVersion: argoproj.io/v1alpha1
+kind: ApplicationSet
+metadata:
+  name: webhook-pr-testing
+  namespace: openshift-gitops
+spec:
+  generators:
+  - pullRequest:
+      github:
+        owner: ogaye-ibm
+        repo: ecm-cicd-argocd
+        labels:
+        - preview
+      requeueAfterSeconds: 300
+  template:
+    metadata:
+      name: 'ecm-cicd-argocd-{{branch}}-{{number}}'
+    spec:
+      source:
+        repoURL: 'https://github.com/ogaye-ibm/ecm-cicd-argocd'
+        targetRevision: '{{head_sha}}'
+        path: deployment/kustomize/overlays/
+      project: default
+      syncPolicy:
+        automated:
+          prune: true
+          selfHeal: true
+        syncOptions:
+          - CreateNamespace=true
+      destination:
+        server: https://kubernetes.default.svc
+        namespace: 'ecm-cicd-argocd-{{branch}}-{{number}}'

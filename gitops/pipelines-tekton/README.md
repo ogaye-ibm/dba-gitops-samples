@@ -34,7 +34,7 @@ High level Flow:
 5 tkn *Deploy Task fetches* images from Registry and deploys to OCP (create a kn service in this example)  
 
 ### Tekton for CI with Argo for CD
-![tkn-cicd](../../images/tkn-argo-ocp.png)
+![tkn-cicd](../../images/tkn-argo-ocp-pipeline.png)
 
 High level Flow:  
 1 git (src) push   
